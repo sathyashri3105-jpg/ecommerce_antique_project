@@ -1,0 +1,40 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Checkout</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="payment-option">
+        <label>
+         <input type="radio" name="payment_method" value="COD" required>
+            <img src="{% static 'images/cash.jpg' %}" alt="Cash on Delivery" width="30">
+            <span>Cash on Delivery</span>
+        </label>
+    </div>
+
+    <div class="payment-option">
+        <label>
+            <input type="radio" name="payment_method" value="Card">
+            <img src="{% static 'images/debit.jpg' %}" alt="Credit/Debit Card" width="30">
+            <span>Credit/Debit Card</span>
+        </label>
+    </div>
+
+    <div class="payment-option">
+        <label>
+            <input type="radio" name="payment_method" value="UPI">
+            <img src="{% static 'images/upi.jpg' %}" alt="UPI" width="30">
+            <span>UPI </span>
+        </label>
+    </div>
+
+    <div class="checkout-buttons">
+        <button type="submit" class="btn place-order-btn">Place Order</button>
+        <a href="{% url 'cart-detail' %}" class="btn back-cart-btn">Go Back to Cart</a>
+        <a href="{% url 'home' %}" class="btn home-btn">Return to Home</a>
+    </div>
+</form>
+{% endblock %}

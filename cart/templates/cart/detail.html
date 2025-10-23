@@ -1,0 +1,35 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Your Shopping Cart</h2>
+
+{% if products %}
+<ul class="cart-list">
+    {% for item in products %}
+    <li class="cart-item">
+        {% if item.image_url %}
+        <img src="{{ item.image_url }}" alt="{{ item.name }}" width="50" style="vertical-align: middle; margin-right: 10px;">
+        {% endif %}
+        <strong>{{ item.name }}</strong> - {{ item.quantity }} × ₹{{ item.price }} = ₹{{ item.subtotal }}
+        <div class="cart-buttons">
+            <a href="{% url 'product-detail' item.id %}" class="btn detail-btn">Detail</a>
+            <a href="{% url 'remove-from-cart' item.id %}" class="btn remove-btn">Remove</a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+<p class="total"><strong>Cart Total: ₹{{ total }}</strong></p>
+
+<div class="cart-actions">
+    <a href="{% url 'checkout' %}" class="btn checkout-btn">Proceed to Checkout</a>
+    <a href="{% url 'home' %}" class="btn home-btn">Return to Home</a>
+</div>
+
+{% else %}
+<p>Your cart is empty.</p>
+<a href="{% url 'home' %}" class="btn home-btn">Return to Home</a>
+{% endif %}
+
+{% endblock %}

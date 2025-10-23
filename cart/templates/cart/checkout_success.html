@@ -1,0 +1,16 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="checkout-success">
+    <h2>Order Placed Successfully ✅</h2>
+    <p>Thank you for your order!</p>
+
+    <p>Payment Method: {{ payment_method }}</p>
+
+    <div class="success-buttons">
+        <a href="{% url 'cart-detail' %}" class="btn back-cart-btn">Go Back to Cart</a>
+        <a href="{% url 'home' %}" class="btn home-btn">Return to Home</a>
+    </div>
+</div>
+{% endblock %}
